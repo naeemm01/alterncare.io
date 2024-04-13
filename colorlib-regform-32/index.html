@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>alternacare</title>
+    <!-- Mobile Specific Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- Font-->
+    <link rel="stylesheet" type="text/css" href="css/nunito-font.css">
+    <!-- Main Style Css -->
+    <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body class="form-v6">
+
+    <div class="page-content">
+        <div class="form-v6-content">
+            <div class="form-left">
+                <img src="images/form-v6.jpg" alt="form">
+            </div>
+            <form class="form-detail" action="#" method="post" onsubmit="loginUser(); return false;">
+                <h2>Login here</h2>
+                
+                <div class="form-row">
+                    <input type="text" name="your-email" id="your-email" class="input-text" placeholder="Email Address" required pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}">
+                </div>
+                
+                <div class="form-row-last">
+                    <input type="submit" name="register" class="register" value="Login">
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+    function loginUser() {
+        // Retrieve user input
+        var email = document.getElementById('your-email').value;
+
+        // Redirect based on outcomes
+        if (emailIsConnectedToStripe(email)) {
+            // Redirect to appropriate dashboard based on membership
+            window.location.href = determineDashboardUrl(email);
+        } else {
+            // Redirect to free membership dashboard or signup form
+            window.location.href = determineDefaultDestination();
+        }
+    }
+
+    function emailIsConnectedToStripe(email) {
+        // For this example, assume all emails are connected to Stripe
+        return true;
+    }
+
+    function determineDashboardUrl(email) {
+        // Implement logic to determine dashboard URL based on membership
+        switch (email) {
+            case 'a@gmail.com':
+                return 'https://www.livingprevention.org/supporter-dashboard867311';
+            case 'b@gmail.com':
+                return 'https://www.livingprevention.org/start-healthy-dashboard';
+            case 'c@gmail.com':
+                return 'https://www.livingprevention.org/preventer-member-dashboard773302';
+            case 'd@gmail.com':
+                return 'https://www.livingprevention.org/free-member427850';
+            default:
+                // Handle other cases or invalid emails
+                return 'https://www.livingprevention.org/free-member427850';
+        }
+    }
+
+    function determineDefaultDestination() {
+        // For this example, redirect all users to the free membership dashboard
+        return 'https://www.livingprevention.org/free-member427850';
+    }
+</script>
+
+</body>
+</html>
